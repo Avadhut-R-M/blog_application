@@ -44,3 +44,4 @@ class Comment(MultiLevelObjects):
 
 class Like(MultiLevelObjects):
     owner = models.ForeignKey(User, related_name='user_likes', on_delete=models.PROTECT)
+    status = models.BooleanField(default=False)

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Home</h1>
+        {% for blog in paginated_blogs %}
+        <a href="blog/{{blog.id}}"><h3>{{ blog.title }}</h3></a>
+        <h6>Published on {{ blog.created|date:'Y-m-d H:i' }}</h6>
+        <h6>By - {{blog.writter.email}}</h6>
+        <!-- <h5>{{ blog.text }}</h5> -->
+        <br>
+        {% endfor %}
+        <div style="display: flex; flex-direction: row;column-gap: 1em;">
+            {% if pages.prev %}
+            <p><a href="?page={{ pages.previous_page_no }}">Prev</a></p>
+            {%endif%}
+            <p>page {{pages.now}} out of {{pages.total}}</p>
+            {% if pages.next %}
+            <p><a href="?page={{ pages.next_page_no }}">Next</a></p>
+            {%endif%}
+        </div>
+{% endblock %}
