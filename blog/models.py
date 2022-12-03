@@ -33,6 +33,11 @@ class Blog(TimeStamped):
     def __str__(self) -> str:
         return '{} - {} {}'.format(self.title, self.writter.first_name, self.writter.last_name)
 
+    def save(self, *args, **kwargs) -> None:
+        self.writter = self.user
+        return super(Blog, self).save( *args, **kwargs)
+
+
 class Comment(MultiLevelObjects):
     text = models.TextField()
     writter = models.ForeignKey(User, related_name='user_comments', on_delete=models.PROTECT)
